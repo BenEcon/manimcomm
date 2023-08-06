@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-__all__ = ["OpenGLPMobject", "OpenGLPGroup", "OpenGLPMPoint"]
+__all__ = ["OpenGLPMobject", "OpenGLPGroup", "OpenGLPMPoint", "GlowDot"]
 
 import moderngl
 import numpy as np
@@ -177,6 +177,19 @@ class OpenGLPMPoint(OpenGLPMobject):
     def __init__(self, location=ORIGIN, stroke_width=4.0, **kwargs):
         self.location = location
         super().__init__(stroke_width=stroke_width, **kwargs)
+
+    def init_points(self):
+        self.points = np.array([self.location], dtype=np.float32)
+
+
+class GlowDot(OpenGLPMobject):
+    shader_folder = "true_dot_g"
+    glow_factor = _Uniforms()
+    def __init__(self, location=ORIGIN, stroke_width=0.0, radius=.5, glow_factor = 2, **kwargs):
+        self.location = location
+        super().__init__(stroke_width=stroke_width, **kwargs)
+        self.point_radius = radius
+        self.glow_factor = glow_factor
 
     def init_points(self):
         self.points = np.array([self.location], dtype=np.float32)
