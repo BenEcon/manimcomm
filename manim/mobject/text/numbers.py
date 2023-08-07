@@ -400,11 +400,12 @@ class Variable(VMobject, metaclass=ConvertToOpenGL):
         var: float,
         label: str | Tex | MathTex | Text | SingleStringMathTex,
         var_type: DecimalNumber | Integer = DecimalNumber,
+        equal_sym = "=",
         num_decimal_places: int = 2,
         **kwargs,
     ):
         self.label = MathTex(label) if isinstance(label, str) else label
-        equals = MathTex("=").next_to(self.label, RIGHT)
+        equals = MathTex(equal_sym).next_to(self.label, RIGHT)
         self.label.add(equals)
 
         self.tracker = ValueTracker(var)
