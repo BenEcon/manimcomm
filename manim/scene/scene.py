@@ -1593,6 +1593,10 @@ class Scene:
             transform = self.camera.inverse_rotation_matrix
             shift = np.dot(np.transpose(transform), shift)
             self.camera.shift(shift)
+        elif ord("d") in self.renderer.pressed_keys:
+            self.camera.increment_theta(-2*d_point[0])
+            self.camera.increment_phi(2*d_point[1])
+            self.mouse_drag_orbit_controls(point, 2*d_point, buttons=1, modifiers="")
 
     def on_mouse_scroll(self, point, offset):
         if not config.use_projection_stroke_shaders:
