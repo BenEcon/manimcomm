@@ -5,8 +5,8 @@ from __future__ import annotations
 
 import pkg_resources
 
-__version__: str = pkg_resources.get_distribution(__name__).version
-
+# __version__: str = pkg_resources.get_distribution(__name__).version
+__version__ = "0.17.3-post-g"
 
 import sys
 
